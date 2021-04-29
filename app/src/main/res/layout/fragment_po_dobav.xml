@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/Irek">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rel_for_anim_dob"
+        android:elevation="1dp"
+        android:layout_centerInParent="true"
+        android:background="@color/Irek"
+        >
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:lottie_rawRes="@raw/book_anim"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
+    </RelativeLayout>
+    <HorizontalScrollView
+        android:id="@+id/scroll_dobav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        >
+        <LinearLayout
+            android:id="@+id/lin2"
+            android:layout_width="wrap_content"
+            android:layout_height="205dp"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/all_dobav"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/scroll_dobav"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/designfor_others_but"
+        android:fontFamily="@font/montserrat_alternates_bold"
+        android:paddingHorizontal="20dp"
+        android:text="Все добавленные"
+        android:textColor="@color/White"
+        android:layout_marginVertical="20dp"
+        android:textSize="10sp"
+        />
+
+</RelativeLayout>

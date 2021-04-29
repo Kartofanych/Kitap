@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.library.LibraryFragment"
+    android:background="@color/Irek">
+
+
+    <include layout="@layout/header"
+        android:id="@+id/head"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent" >
+
+    </include>
+    <ScrollView
+        android:id="@+id/bigScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/head"
+        android:scrollbars="none">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/toolbarr"
+        android:title="BackdropDemo"
+
+        android:titleTextColor="@color/White"/>
+
+        <com.roacult.backdrop.BackdropLayout
+            android:id="@+id/backDrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:animationDuration="400"
+            app:back_layout="@id/backend"
+            app:front_layout="@id/frontend"
+            app:menuDrawable="@drawable/ic_genres"
+            app:closeDrawable="@drawable/back"
+            android:layout_below="@+id/toolbarr"
+            app:toolbarId="@id/toolbarr">
+
+        <include
+            android:id="@+id/backend"
+            layout="@layout/back_layout"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+        <include
+            android:id="@+id/frontend"
+            layout="@layout/front_layout"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+        </com.roacult.backdrop.BackdropLayout>
+
+
+    </RelativeLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

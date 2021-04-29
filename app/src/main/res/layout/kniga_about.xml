@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/Irek"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+        <include layout="@layout/header"
+            android:id="@+id/header"/>
+    <ScrollView
+        android:id="@+id/main_scroll"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/header"
+        android:scrollbars="none"
+        >
+
+        <RelativeLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/design_for_all_in_account">
+
+            <TextView
+                android:id="@+id/name1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Название"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/Korich"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rel"
+                android:layout_centerHorizontal="true"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/rel_for_img"
+                android:background="@drawable/design_for_tablelayout">
+
+                        <TextView
+                            android:id="@+id/autor1"
+                            android:layout_width="125dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/design_for_table_left_elements"
+                            android:fontFamily="@font/montserrat_alternates_bold"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="АВТОР:"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+
+
+                            />
+
+                <TextView
+                    android:id="@+id/autor"
+                    android:layout_width="123dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/text_line"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text=""
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/autor1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/langg"
+                    android:layout_width="125dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/design_for_table_left_elements"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="ЯЗЫК КНИГИ:"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/autor1">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/lang"
+                    android:layout_width="123dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/text_line"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text=""
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/langg"
+                    app:layout_constraintTop_toBottomOf="@+id/autor">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/genree"
+                    android:layout_width="125dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/design_for_table_left_elements"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="ЖАНР:"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/langg">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/genre"
+                    android:layout_width="123dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/text_line"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/langg"
+                    app:layout_constraintTop_toBottomOf="@+id/lang">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/tagg"
+                    android:layout_width="125dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/design_for_table_left_elements"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:text="ТЕГИ:"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/genree">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tag"
+                    android:layout_width="123dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/text_line"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text=""
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/langg"
+                    app:layout_constraintTop_toBottomOf="@+id/genre">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/langg1"
+                    android:layout_width="125dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/design_for_table_left_elements"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:text="ЯЗЫК ОРИГИНАЛЬНОЙ КНИГИ:"
+                    android:textColor="#000000"
+                    android:textSize="9sp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tagg">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/lang1"
+                    android:layout_width="123dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/text_line"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text=""
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/langg"
+                    app:layout_constraintTop_toBottomOf="@+id/tag">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/kol_strr"
+                    android:layout_width="125dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/design_for_table_left_elements"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:text="КОЛИЧЕСТВО СТРАНИЦ:"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/langg1">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/kol_str"
+                    android:layout_width="123dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/text_line"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text=""
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/langg"
+                    app:layout_constraintTop_toBottomOf="@+id/lang1">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/whoo"
+                    android:layout_width="125dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/design_for_table_left_elements"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="ДОБАВИЛ ПОЛЬЗОВАТЕЛЬ:"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kol_strr">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/who"
+                    android:layout_width="123dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/text_line"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text=""
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/langg"
+                    app:layout_constraintTop_toBottomOf="@+id/kol_str">
+
+                </TextView>
+
+
+                <TextView
+                    android:layout_width="125dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/design_for_table_right_elements"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+
+                    android:text="ПРОЧИТАНО РАЗ:"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/whoo">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/how_many"
+                    android:layout_width="123dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text=""
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/langg"
+                    app:layout_constraintTop_toBottomOf="@+id/who">
+
+                </TextView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cons"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/rel">
+
+                <Button
+                    android:id="@+id/download"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/designfor_download_but"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:paddingHorizontal="10dp"
+                    android:text="Скачать"
+                    android:textColor="@color/White"
+                    android:textSize="12sp"
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    />
+
+                <Button
+                    android:id="@+id/read_online"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/designfor_reading_but"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:text="Читать онлайн"
+                    android:textColor="@color/White"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.9"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/rel_for_img"
+                android:layout_below="@+id/name1"
+                android:paddingHorizontal="5dp"
+                android:layout_marginTop="20dp"
+                >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fk"
+                    android:layout_width="130dp"
+                    android:layout_height="200dp"
+                    android:layout_centerHorizontal="true"
+                    app:cardCornerRadius="25dp">
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="130dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/first_kitap"
+                    android:transitionName="@string/trans" />
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/annotation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/design_for_menu_in_account"
+                android:layout_below="@+id/cons"
+                android:paddingBottom="20dp"
+                android:paddingHorizontal="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                >
+                <TextView
+                    android:id="@+id/text_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Аннотация:"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="start"
+                    android:textSize="20sp"
+                    android:textColor="@color/Korich"
+                    />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/text_annotation"
+                    android:layout_below="@+id/text_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="К сожалению, описание этой книги отсутствует."
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/montserrat_alternates_bold"
+                    android:gravity="start"
+                    android:textColor="@color/Korich"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

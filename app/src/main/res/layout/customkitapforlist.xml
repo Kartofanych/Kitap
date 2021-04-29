@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/custom_kitap"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="30dp"
+    android:paddingTop="30dp"
+    android:paddingBottom="30dp"
+    android:background="@drawable/designfor_kitap_inlist"
+    android:layout_marginTop="20dp"
+    android:layout_marginHorizontal="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/KitapImage"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:src="@drawable/back_for_no_kniga"
+
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/KitapImage"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Название"
+            android:textColor="#1E90FF"
+            android:fontFamily="@font/montserrat_alternates_bold"
+            />
+        <TextView
+            android:id="@+id/autor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Автор"
+            android:textColor="#1E90FF"
+            android:fontFamily="@font/montserrat_alternates_regular"
+            android:layout_below="@+id/name"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toEndOf="@+id/KitapImage"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="О книге:"
+            android:fontFamily="@font/montserrat_alternates_bold"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:id="@+id/aboutalot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/////////////////////////////////////////////////////////////////////////////////////////////////////////"
+            android:fontFamily="@font/montserrat_alternates_regular"
+            android:textColor="#000000"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

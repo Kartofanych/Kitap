@@ -1,0 +1,174 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/White">
+    <RelativeLayout
+        android:id="@+id/reading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/design_for_all_in_account"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintHeight_percent="0.85"
+        >
+        <TextView
+            android:id="@+id/page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat_alternates_bold"
+            android:gravity="center"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/text_for_reading"
+            android:layout_below="@+id/page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:textSize="13sp"
+            android:gravity="start"
+            android:textColor="#000000"
+            android:text="Ярославский вокзал шибал свежестью и тепловозной гарью. После прокисшего плацкартного пара, после прокуренного железа тамбуров, подслащенного мочой — тут воздух был слишком огромный: кислорода чересчур, и он сразу чифирем бил в голову.
+
+    Москвы тоже было слишком, после елочных коридоров она приезжим распахивалась как космос. Укутанные люди прыгали из вагонов через ров на платформу, выгружали перехваченные липкой лентой сине-клетчатые китайские баулы, хватали их в обе руки и разгонялись по перронам в перспективу, как штурмовики на взлет по аэродромным полосам. Перспектива была дымной, и в дымке приехавшим людям маячили дворцы, замки и высотки.
+
+    Илья больше других не спешил, в потоке не греб — давал себя нести. Нюхал московское небо, присматривался отвыкшими глазами к дали, удивлялся молча. Было ярко, как в детстве. Тусклая ноябрьская Москва резала глаза.—
+
+    Приехать он в Москву приехал, но попасть еще не попал. Вокзал был еще пока территорией окружной, просоленной и засаленной России. Как бангладешское посольство является во всех смыслах территорией государства Бангладеш.
+
+    В конце платформы было сделано сито. Илья его уже издалека привычно разглядел поверх чужих голов. Серая форма, отъеденные морды, глаза рыщущие, цепкие. Наметанные. Раз, раз, раз. И даже собака служебная на цепи: полное сходство. Тут, понятно, она не для того. Тут она просто нюхает себе наркотики, взрывчатку, наверное. Но ведь она и страх может унюхать.
+
+    Илья стал смотреть в пустоту, чтобы мимо цепких глаз, чтобы не примагнититься к ним. Стал думать ни о чем, чтобы ничем не пахнуть.
+
+    — Молодой человек!
+
+    Он тут же застыл послушно. Как они его узнали? По оттенку кожи? По ссутуленной спине? По голове пригнутой? Как собака зверя узнает?
+
+    — Подойдите. Документы.
+
+    Он отдал паспорт. Листнули на прописку, цыкнули.
+
+    — Откуда возвращаетесь?
+
+    Врать или правду говорить? Не будут же они проверять. Ездил… Ездил куда-нибудь. Отдыхать. К бабке. В командировку. Как они проверят?
+
+    — Отбывал. Наказание.
+
+    — Справку об освобождении.
+"
+
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reading"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintHeight_percent="0.1">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <Button
+                android:id="@+id/btn0"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:textSize="10sp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/White"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:background="@drawable/ic_baseline_navigate_before_24"/>
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="x"
+                android:textSize="10sp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_toRightOf="@+id/btn0"
+                android:textColor="@color/White"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:background="@drawable/designfor_pages_but"/>
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="x+1"
+                android:layout_toRightOf="@+id/btn1"
+                android:textSize="10sp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:background="@drawable/designfor_nopages_but"/>
+
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="x+2"
+                android:layout_toRightOf="@+id/btn2"
+                android:textSize="10sp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:background="@drawable/designfor_nopages_but"/>
+
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="..."
+                android:textSize="10sp"
+                android:layout_toRightOf="@+id/btn3"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:background="@drawable/designfor_nopages_but"/>
+
+
+            <Button
+                android:id="@+id/btn5"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="last"
+                android:layout_toRightOf="@+id/btn4"
+                android:textSize="10sp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:background="@drawable/designfor_nopages_but"/>
+
+
+            <Button
+                android:id="@+id/btn6"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_toRightOf="@+id/btn5"
+                android:textSize="10sp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#000000"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:background="@drawable/ic_baseline_navigate_next_24"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

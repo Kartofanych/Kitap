@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "760853193418",
+    "firebase_url": "https://irekonelove4.firebaseio.com",
+    "project_id": "irekonelove4",
+    "storage_bucket": "irekonelove4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760853193418:android:d0ee1abd874753d90d8a33",
+        "android_client_info": {
+          "package_name": "com.example.irekonelove4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760853193418-anntha6l5j40re6k6klvdch6vuq4srpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.irekonelove4",
+            "certificate_hash": "06d57b99c2aa64d244a1d468c1f7f0b11fca8316"
+          }
+        },
+        {
+          "client_id": "760853193418-261kpe8ffk3vsmidnjoonr6lf2t1ht7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChdCGO7jy_hEVeLp6jNbSP-gs1OzWiPWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760853193418-261kpe8ffk3vsmidnjoonr6lf2t1ht7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

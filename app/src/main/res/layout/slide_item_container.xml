@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ImageSlider"
+            android:adjustViewBounds="true"
+            app:riv_corner_radius="12dp"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="Название"
+        android:textColor="#000000"
+        android:fontFamily="@font/montserrat_alternates_bold" />
+    <TextView
+        android:id="@+id/autor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="Автор"
+        android:fontFamily="@font/montserrat_alternates_regular" />
+</LinearLayout>
