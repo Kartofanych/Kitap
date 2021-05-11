@@ -181,18 +181,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="50dp"
+                android:paddingBottom="80dp"
                 android:paddingHorizontal="10dp">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/popular"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginVertical="20dp"
-                    android:background="@drawable/designfor_karusel"
+                    android:background="@drawable/designfor_edittext_in_addition"
                     android:padding="10dp"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent">
 
@@ -225,18 +224,16 @@
                                 android:paddingEnd="80dp"
                                 android:text="Самые популярные произведения татарской литературы"
                                 android:textColor="@color/Grey"
-                                android:textSize="17sp" />
+                                android:textSize="14sp" />
 
                         </LinearLayout>
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/ViewPagerSliderImage1"
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/scroll_pop"
+                            android:layout_marginVertical="20dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:paddingHorizontal="80dp"
-                            android:layout_below="@+id/poplin"
-                            android:layout_marginVertical="10dp"
-                            />
+                            android:layout_below="@id/poplin"
+                            android:layout_height="270dp">
+                        </androidx.viewpager.widget.ViewPager>
 
                     </RelativeLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -246,7 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginVertical="20dp"
-                    android:background="@drawable/designfor_karusel"
+                    android:background="@drawable/designfor_edittext_in_addition"
                     android:padding="10dp"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -298,119 +295,53 @@
                     </RelativeLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/detyam"
+                <RelativeLayout
+                    android:id="@+id/rel_for_otz"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginVertical="20dp"
-                    android:background="@drawable/designfor_karusel"
-                    android:padding="10dp"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent">
-
-                    <RelativeLayout
-                        android:id="@+id/relativethird"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/designfor_edittext_in_addition"
+                    android:paddingBottom="20dp"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="10dp"
+                    android:layout_marginTop="30dp"
+                    >
+                    <TextView
+                        android:id="@+id/text_goToAdd"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.022">
-
-                        <LinearLayout
-                            android:id="@+id/detyamlin"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_alternates_bold"
-                                android:text="Популярное"
-                                android:textColor="@color/Korich"
-                                android:textSize="21sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_alternates_regular"
-                                android:paddingEnd="80dp"
-                                android:text="Книжки для самых маленьких"
-                                android:textColor="@color/Grey"
-                                android:textSize="17sp" />
-
-                        </LinearLayout>
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/ViewPagerSliderImage3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:paddingHorizontal="80dp"
-                            android:layout_below="@+id/detyamlin"
-                            android:layout_marginVertical="10dp"
-                            />
-
-                    </RelativeLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/newkarusel"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginVertical="20dp"
-                    android:background="@drawable/designfor_karusel"
-                    android:padding="10dp"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent">
-
-                    <RelativeLayout
-                        android:id="@+id/relativefourth"
+                        android:text="Оставьте отзыв о платформе!"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/montserrat_alternates_bold"
+                        android:gravity="center"
+                        android:textColor="@color/Korich"
+                        />
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_below="@+id/text_goToAdd"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.022">
-                        <LinearLayout
-                            android:id="@+id/newlin"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                        android:text="КИТАП находится на стадии Бета-тестирования. Нам очень важно ваше мнение!"
+                        android:textSize="12sp"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/montserrat_alternates_bold"
+                        android:gravity="center"
+                        android:textColor="@color/GreyForBackOfEd"
+                        />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_alternates_bold"
-                                android:text="Новинки"
-                                android:textColor="@color/Korich"
-                                android:textSize="21sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_alternates_regular"
-                                android:paddingEnd="80dp"
-                                android:text="Самые новые имена"
-                                android:textColor="@color/Grey"
-                                android:textSize="17sp" />
-
-                        </LinearLayout>
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/ViewPagerSliderImage4"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:paddingHorizontal="80dp"
-                            android:layout_marginVertical="10dp"
-                            android:layout_below="@+id/newlin"
-                            />
-
-                    </RelativeLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/goToAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@+id/text"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/designfor_others_but"
+                        android:fontFamily="@font/montserrat_alternates_bold"
+                        android:paddingHorizontal="10dp"
+                        android:text="Оставить отзыв"
+                        android:textSize="10sp"
+                        android:textColor="@color/White" />
+                </RelativeLayout>
 
             </LinearLayout>
         </LinearLayout>

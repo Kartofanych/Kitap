@@ -28,6 +28,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.irekonelove4.DataRequest.FirstPrReq;
 import com.example.irekonelove4.ui.accounts.AccountFragment;
+import com.example.irekonelove4.ui.home.HomeFragment;
 import com.example.irekonelove4.ui.search.SearchFragment;
 
 import java.io.InputStreamReader;
@@ -69,6 +70,7 @@ public class PageFragmentforAccount extends Fragment {
     public static final String APP_PREFERENCES_LOGIN = "Login";
     public static final String APP_PREFERENCES_CITY = "City";
     public static final String APP_PREFERENCES_MAIL = "Mail";
+    public static final String APP_PREFERENCES_ID = "ID";
     public static final String APP_PREFERENCES_PASSWORD = "Pass";
     public static final String APP_PREFERENCES_SEX = "00";
     public static final String APP_PREFERENCES_AVATAR = "AVATAR";
@@ -347,12 +349,13 @@ public class PageFragmentforAccount extends Fragment {
                                         + " "+loginResponse.getBooks().get(finalI).getUserAuthor()+ " " + loginResponse.getBooks().get(finalI).getViews());
                                 startActivity(intent);
                             }
-                        },1000);
+                        },200);
                     }
                 }
             }
-        }, 1000);
+        }, 800);
     }
+
 
     public class AsyncRequest extends AsyncTask<String, String, String> {
 

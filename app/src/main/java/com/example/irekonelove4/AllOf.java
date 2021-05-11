@@ -52,6 +52,7 @@ public class AllOf extends Activity {
     public static final String APP_PREFERENCES_CITY = "City";
     public static final String APP_PREFERENCES_MAIL = "Mail";
     public static final String APP_PREFERENCES_PASSWORD = "Pass";
+    public static final String APP_PREFERENCES_ID = "ID";
     public static final String APP_PREFERENCES_SEX = "00";
     public static final String APP_PREFERENCES_AVATAR = "AVATAR";
     public static final String APP_PREFERENCES_QUOTE = "Quote";
@@ -587,6 +588,7 @@ public class AllOf extends Activity {
                                 intent.putExtra("kol_str", loginResponse.getBooks().get(finalI).getSizeOfBookPages());
                                 intent.putExtra("who", loginResponse.getBooks().get(finalI).getUserAuthor());
                                 intent.putExtra("how_many", loginResponse.getBooks().get(finalI).getViews());
+                                intent.putExtra("about", loginResponse.getBooks().get(finalI).getBriefly());
                                 intent.putExtra("img", loginResponse.getBooks().get(finalI).getImg());
                                 intent.putExtra("text", fullstring);
                                 Log.d("1",loginResponse.getBooks().get(finalI).getLanguage()+" " +loginResponse.getBooks().get(finalI).getLanguageOriginal()
@@ -594,11 +596,11 @@ public class AllOf extends Activity {
                                         + " "+loginResponse.getBooks().get(finalI).getUserAuthor()+ " " + loginResponse.getBooks().get(finalI).getViews());
                                 startActivity(intent);
                             }
-                        },1000);
+                        },200);
                     }
                 }
             }
-        }, 1000);
+        }, 800);
     }
 
 

@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Kitap Mobile</string>
-    <string name="title_home">Home</string>
-    <string name="title_addition">Addition</string>
-    <string name="title_library">Library</string>
-    <string name="title_search">Search</string>
-    <string name="title_accounts">Account</string>
+    <string name="title_home">Главная</string>
+    <string name="title_addition">Добавление</string>
+    <string name="title_library">Библиотека</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_accounts">Мой кабинет</string>
     <string name="trans">trans</string>
 
     <string name="ion_search"></string>

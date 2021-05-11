@@ -16,9 +16,9 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:alpha="0.5"
-            android:background="@drawable/account"
+            android:background="@color/White"
             android:layout_alignParentTop="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"

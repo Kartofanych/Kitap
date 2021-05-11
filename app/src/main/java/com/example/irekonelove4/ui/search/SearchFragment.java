@@ -413,6 +413,7 @@ public class SearchFragment extends Fragment {
                                 intent.putExtra("tag", loginResponse.getBooks().get(finalI).getTags());
                                 intent.putExtra("kol_str", loginResponse.getBooks().get(finalI).getSizeOfBookPages());
                                 intent.putExtra("who", loginResponse.getBooks().get(finalI).getUserAuthor());
+                                intent.putExtra("about", loginResponse.getBooks().get(finalI).getBriefly());
                                 intent.putExtra("how_many", loginResponse.getBooks().get(finalI).getViews());
                                 intent.putExtra("img", loginResponse.getBooks().get(finalI).getImg());
                                 intent.putExtra("url", url.toString());

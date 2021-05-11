@@ -52,6 +52,7 @@ public class Enterance extends Activity {
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_NAME = "Name";
     public static final String APP_PREFERENCES_AGE = "Age";
+    public static final String APP_PREFERENCES_ID = "ID";
     public static final String APP_PREFERENCES_LOGIN = "Login";
     public static final String APP_PREFERENCES_CITY = "City";
     public static final String APP_PREFERENCES_MAIL = "Mail";
@@ -203,6 +204,7 @@ public class Enterance extends Activity {
                     editor.putString(APP_PREFERENCES_LOGIN, userForJson.getLogin());
                     editor.putString(APP_PREFERENCES_PASSWORD, userForJson.getPassword());
                     editor.putString(APP_PREFERENCES_MAIL, userForJson.getEmail());
+                    editor.putString(APP_PREFERENCES_ID, userForJson.getUserId());
                     editor.putString(APP_PREFERENCES_FAVOURITE,userForJson.getFavourite());
                     editor.putString(APP_PREFERENCES_INTERVIEW,userForJson.getInterview());
                     editor.putString(APP_PREFERENCES_QUOTE,userForJson.getQuote());

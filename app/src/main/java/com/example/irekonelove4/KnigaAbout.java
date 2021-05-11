@@ -61,7 +61,7 @@ public class KnigaAbout extends Activity {
     private Integer last,last_position = 0, kol_str_int;
     private ScrollView main;
     private TextView name, name1, autor, lang, genre, tag,lang_orig,kol_str,who,kol_checks, text, annotation;
-    private String img, fulltext;
+    private String img, fulltext, briefly;
     private URL url;
     private Layout layout;
     private Bundle bundle;
@@ -104,8 +104,9 @@ public class KnigaAbout extends Activity {
             lang_orig.setText(bundle.getString("lang1"));
             who.setText(bundle.getString("who"));
             kol_checks.setText(bundle.getString("how_many"));
-            annotation.setText(bundle.getString("annotation"));
+            annotation.setText(bundle.getString("about"));
             String urll = bundle.getString("url");
+
             try {
                 url = new URL(urll);
             } catch (MalformedURLException e) {
@@ -113,6 +114,9 @@ public class KnigaAbout extends Activity {
             }
 
 
+        }
+        if(annotation.getText().toString().equals("")){
+            annotation.setText("К сожалению, описание этой книги отсутствует.");
         }
         read.setOnClickListener(new View.OnClickListener() {
             @Override

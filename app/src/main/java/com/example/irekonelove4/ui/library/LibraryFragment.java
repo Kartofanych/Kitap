@@ -39,6 +39,7 @@ import com.example.irekonelove4.Enterance;
 import com.example.irekonelove4.KnigaAbout;
 import com.example.irekonelove4.R;
 import com.example.irekonelove4.DataRequest.FirstPrReq;
+import com.example.irekonelove4.ui.home.HomeFragment;
 import com.roacult.backdrop.BackdropLayout;
 
 import java.io.InputStreamReader;
@@ -73,6 +74,7 @@ public class LibraryFragment extends Fragment {
     public static final String APP_PREFERENCES_MAIL = "Mail";
     public static final String APP_PREFERENCES_PASSWORD = "Pass";
     public static final String APP_PREFERENCES_SEX = "00";
+    public static final String APP_PREFERENCES_ID = "ID";
     public static final String APP_PREFERENCES_AVATAR = "AVATAR";
     public static final String APP_PREFERENCES_QUOTE = "Quote";
     public static final String APP_PREFERENCES_FAVOURITE = "Fav";
@@ -126,6 +128,7 @@ public class LibraryFragment extends Fragment {
 
 
         genres_to_click[0] = view.findViewById(R.id.first);
+
         genres_to_click[1] = view.findViewById(R.id.second);
         genres_to_click[2] = view.findViewById(R.id.third);
         genres_to_click[3] = view.findViewById(R.id.fourth);
@@ -136,7 +139,15 @@ public class LibraryFragment extends Fragment {
         genres_to_click[8] = view.findViewById(R.id.ninth);
         genres_to_click[9] = view.findViewById(R.id.tenth);
         genres_to_click[10] = view.findViewById(R.id.eleventh);
-//        for(int i = 0; i < )
+        for(int i = 0; i < genres_to_click.length; i++){
+            genres_to_click[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    All(v);
+                }
+            });
+        }
+        //        for(int i = 0; i < )
         //AllInfoo();
 
         final Drawable scrl_for_gen1 = getResources().getDrawable(R.drawable.scroll_for_genres_1);
@@ -306,32 +317,7 @@ public class LibraryFragment extends Fragment {
 
         }
 
-        for(int i = 0; i < 11; i ++){
-            final int finalI = i;
-            genres_to_click[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Genre_Click(genres_to_click[finalI].getText().toString());
-                    //bigScrollView.requestChildFocus(allback.getChildAt(finalI),bigScrollView.getFocusedChild());
-                }
-            });
-        }
-
         return view;
-    }
-    public void Genre_Click(final String genre){
-        for(int index = 0; index < allback.getChildCount(); index++) {
-            View nextChild = allback.getChildAt(index);
-            TextView genre_in_click = nextChild.findViewById(R.id.genre);
-            TextView all_genres_in_click = nextChild.findViewById(R.id.all_genre_name);
-            if(genre_in_click.getText().toString().equals(genre)){
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    bigScrollView.scrollToDescendant(all_genres_in_click);
-                }
-                //bigScrollView.requestChildFocus(nextChild,bigScrollView.getFocusedChild());
-            }
-        }
-
     }
 
     public void bigClick(View view){
@@ -375,12 +361,13 @@ public class LibraryFragment extends Fragment {
                                         + " "+loginResponse.getBooks().get(finalI).getUserAuthor()+ " " + loginResponse.getBooks().get(finalI).getViews());
                                 startActivity(intent);
                             }
-                        },1000);
+                        },200);
                     }
                 }
             }
-        }, 1000);
+        }, 800);
     }
+
     public class AsyncRequest extends AsyncTask<String, String, String> {
 
         @Override
@@ -411,6 +398,7 @@ public class LibraryFragment extends Fragment {
             return null;
         }
     }
+
 
     public void All(View view){
 

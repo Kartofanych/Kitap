@@ -16,6 +16,7 @@ public class SplashActivity extends AppCompatActivity {
     public static final String APP_PREFERENCES_LOGIN = "Login";
     public static final String APP_PREFERENCES_CITY = "City";
     public static final String APP_PREFERENCES_MAIL = "Mail";
+    public static final String APP_PREFERENCES_ID = "ID";
     public static final String APP_PREFERENCES_PASSWORD = "Pass";
     public static final String APP_PREFERENCES_SEX = "00";
     public static final String APP_PREFERENCES_AVATAR = "AVATAR";

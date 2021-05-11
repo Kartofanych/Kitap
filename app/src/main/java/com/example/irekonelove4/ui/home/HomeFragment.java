@@ -1,16 +1,19 @@
 package com.example.irekonelove4.ui.home;
 
+import android.animation.ArgbEvaluator;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -21,26 +24,40 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
+import com.example.irekonelove4.Adapter_for_Home;
 import com.example.irekonelove4.ApiClient;
+import com.example.irekonelove4.DataRequest.BookForJson;
+import com.example.irekonelove4.DataRequest.BookNotForJson;
 import com.example.irekonelove4.DataRequest.FirstPrReq;
 import com.example.irekonelove4.KnigaAbout;
+import com.example.irekonelove4.Models.PageFragment;
+import com.example.irekonelove4.PageFragmentforAccount;
+import com.example.irekonelove4.PageFragmentforHome;
 import com.example.irekonelove4.R;
-import com.example.irekonelove4.SliderAdapter;
-import com.example.irekonelove4.SliderItem;
+import com.example.irekonelove4.ui.accounts.AccountFragment;
+import com.google.gson.annotations.SerializedName;
 
+
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.zip.Inflater;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,307 +65,237 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
+    static final int PAGE_COUNT = 8;
     private ScrollView scrollView_inHome;
-    private ViewPager2  viewPager1, viewPager2, viewPager3, viewPager4;
-    private Handler sliderHandler4 = new Handler();
-    private Handler sliderHandler1 = new Handler();
-    private Handler sliderHandler2 = new Handler();
-    private Handler sliderHandler3 = new Handler();
     private int where = 1;
     private URL url;
-
-    SliderItem[] items2 = new SliderItem[5];
-    SliderItem[] items1 = new SliderItem[5];
-    SliderItem[] items3 = new SliderItem[5];
-    SliderItem[] items4 = new SliderItem[5];
+    private LayoutInflater infl;
+    private SharedPreferences mSettings;
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_NAME = "Name";
+    public static final String APP_PREFERENCES_AGE = "Age";
+    public static final String APP_PREFERENCES_LOGIN = "Login";
+    public static final String APP_PREFERENCES_CITY = "City";
+    public static final String APP_PREFERENCES_MAIL = "Mail";
+    public static final String APP_PREFERENCES_PASSWORD = "Pass";
+    public static final String APP_PREFERENCES_SEX = "00";
+    public static final String APP_PREFERENCES_ID = "ID";
+    public static final String APP_PREFERENCES_AVATAR = "AVATAR";
+    public static final String APP_PREFERENCES_QUOTE = "Quote";
+    public static final String APP_PREFERENCES_FAVOURITE = "Fav";
+    public static final String APP_PREFERENCES_RECOMMEND_GENRES = "GENRES";
+    public static final String APP_PREFERENCES_RECOMMEND_AUTHORS = "AUTHORS";
+    public static final String APP_PREFERENCES_INTERVIEW = "Interview";
+    public static final String APP_PREFERENCES_DATA = "Data";
+    private String fullstring;
     private FirstPrReq loginResponse;
+    private ViewPager popular, preferences;
+    private PagerAdapter pagerAdapter;
+    private List<BookNotForJson> models;
+    private View view;
     @RequiresApi(api = Build.VERSION_CODES.M)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        view = inflater.inflate(R.layout.fragment_home, container, false);
+        models = new ArrayList<>();
+
+        infl = getLayoutInflater();
+
         TextView tools_name = (TextView) view.findViewById(R.id.fragment_name);
         ConstraintLayout allin = (ConstraintLayout) view.findViewById(R.id.allIN);
         scrollView_inHome = (ScrollView) view.findViewById(R.id.allkarusel_in_home);
-        viewPager4 = view.findViewById(R.id.ViewPagerSliderImage4);
-        viewPager1 = view.findViewById(R.id.ViewPagerSliderImage1);
-        viewPager2 = view.findViewById(R.id.ViewPagerSliderImage2);
-        viewPager3 = view.findViewById(R.id.ViewPagerSliderImage3);
-        List<SliderItem> sliderItems4 = new ArrayList<>();
-        items4[0] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items4[1] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items4[2] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items4[3] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items4[4] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        sliderItems4.add(items4[0]);
-        sliderItems4.add(items4[1]);
-        sliderItems4.add(items4[2]);
-        sliderItems4.add(items4[3]);
-        sliderItems4.add(items4[4]);
-        viewPager4.setAdapter(new SliderAdapter(sliderItems4,viewPager4));
-        viewPager4.setClipToPadding(false);
-        viewPager4.setClipChildren(false);
-        viewPager4.setOffscreenPageLimit(3);
-        viewPager4.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        popular = view.findViewById(R.id.scroll_pop);
+        pagerAdapter = new HomeFragment.MyFragmentPagerAdapter(getFragmentManager());
+        popular.setAdapter(pagerAdapter);
 
 
-        final List<SliderItem> sliderItems1 = new ArrayList<>();
-        items1[0] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items1[1] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items1[2] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items1[3] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items1[4] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        sliderItems1.add(items1[0]);
-        sliderItems1.add(items1[1]);
-        sliderItems1.add(items1[2]);
-        sliderItems1.add(items1[3]);
-        sliderItems1.add(items1[4]);
-        viewPager1.setAdapter(new SliderAdapter(sliderItems1,viewPager1));
-        viewPager1.setClipToPadding(false);
-        viewPager1.setClipChildren(false);
-        viewPager1.setOffscreenPageLimit(3);
-        viewPager1.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
-
-        List<SliderItem> sliderItems2 = new ArrayList<>();
-        items2[0] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items2[1] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items2[2] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items2[3] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items2[4] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        sliderItems2.add(items2[0]);
-        sliderItems2.add(items2[1]);
-        sliderItems2.add(items2[2]);
-        sliderItems2.add(items2[3]);
-        sliderItems2.add(items2[4]);
-        viewPager2.setAdapter(new SliderAdapter(sliderItems2,viewPager2));
-        viewPager2.setClipToPadding(false);
-        viewPager2.setClipChildren(false);
-        viewPager2.setOffscreenPageLimit(3);
-        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
-
-        List<SliderItem> sliderItems3 = new ArrayList<>();
-        items3[0] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items3[1] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items3[2] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items3[3] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        items3[4] = new SliderItem(R.drawable.back_for_no_kniga,"AYF1","BOH1");
-        sliderItems3.add(items3[0]);
-        sliderItems3.add(items3[1]);
-        sliderItems3.add(items3[2]);
-        sliderItems3.add(items3[3]);
-        sliderItems3.add(items3[4]);
-        viewPager3.setAdapter(new SliderAdapter(sliderItems3,viewPager3));
-        viewPager3.setClipToPadding(false);
-        viewPager3.setClipChildren(false);
-        viewPager3.setOffscreenPageLimit(3);
-        viewPager3.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
-        AllInfoo();
-
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 - Math.abs(position);
-                page.setScaleY(0.85f + r * 0.15f);
-            }
-        });
-        viewPager1.setPageTransformer(compositePageTransformer);
-        viewPager2.setPageTransformer(compositePageTransformer);
-        viewPager3.setPageTransformer(compositePageTransformer);
-        viewPager4.setPageTransformer(compositePageTransformer);
-
-
-
-
-
-        scrollView_inHome.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @RequiresApi(api = Build.VERSION_CODES.Q)
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
-
-                int location[][] = new int[4][2];
-                viewPager1.getLocationInSurface(location[0]);
-                viewPager2.getLocationInSurface(location[1]);
-                viewPager3.getLocationInSurface(location[2]);
-                viewPager4.getLocationInSurface(location[3]);
-                Log.d("1", String.valueOf(where)+" " +String.valueOf(location[0][1])+" " + String.valueOf(location[1][1])+" " +String.valueOf(location[2][1])+" " +String.valueOf(location[3][1]));
-                int wtff1 = 0,wtff2 = 0,wtff3 = 0,wtff4 = 0;
-                if(location[0][1] > 0 && wtff1 == 0) {
-                    sliderHandler1.removeCallbacks(sliderRunnable1);
-                    sliderHandler1.postDelayed(sliderRunnable1, 2000);
-                        where = 1;
-                        wtff1 = 1;
-                        wtff2 = 0;
-                        wtff3 = 0;
-                        wtff1 = 0;
-
-                }
-                if(location[1][1] > 0 && location[0][1] < 0 && wtff2 == 0) {
-                    where = 2;
-                    sliderHandler2.removeCallbacks(sliderRunnable2);
-                    sliderHandler2.postDelayed(sliderRunnable2, 2000);
-                    wtff1 = 0;
-                    wtff2 = 1;
-                    wtff3 = 0;
-                    wtff4 = 0;
-
-                }
-                if(location[2][1] > 0 && wtff3 == 0&& location[1][1] < 0) {
-                    where = 3;
-                    sliderHandler3.removeCallbacks(sliderRunnable3);
-                    sliderHandler3.postDelayed(sliderRunnable3, 2000);
-                    wtff1 = 0;
-                    wtff2 = 0;
-                    wtff3 = 1;
-                    wtff4 = 0;
-                }
-                if(location[3][1] > 0 && wtff4 == 0 && location[2][1] < 0) {
-                    where = 4;
-                    sliderHandler4.removeCallbacks(sliderRunnable4);
-                    sliderHandler4.postDelayed(sliderRunnable4, 2000);
-                    wtff1 = 0;
-                    wtff2 = 0;
-                    wtff3 = 0;
-                    wtff4 = 1;
-                }
-            }
-        });
-        viewPager4.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                sliderHandler4.removeCallbacks(sliderRunnable4);
-                sliderHandler4.postDelayed(sliderRunnable4, 2000);
-            }
-        });
-        viewPager1.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                sliderHandler1.removeCallbacks(sliderRunnable1);
-                sliderHandler1.postDelayed(sliderRunnable1, 2000);
-            }
-        });
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                sliderHandler2.removeCallbacks(sliderRunnable2);
-                sliderHandler2.postDelayed(sliderRunnable2, 2000);
-            }
-        });
-        viewPager3.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                sliderHandler3.removeCallbacks(sliderRunnable3);
-                sliderHandler3.postDelayed(sliderRunnable3, 2000);
-            }
-        });
-        tools_name.setText("Главная");
+        //info();
 
 
 
         return view;
     }
 
-    private Runnable sliderRunnable1 = new Runnable(){
-        @Override
-        public void run() {
-            if(where == 1) {
-                viewPager1.setCurrentItem(viewPager1.getCurrentItem() + 1);
-            }
-        }
-    };
-    private Runnable sliderRunnable2 = new Runnable(){
-        @Override
-        public void run() {
 
-            if(where == 2) {
-                viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
-            }
-        }
-    };
-    private Runnable sliderRunnable3 = new Runnable(){
-        @Override
-        public void run() {
-
-            if(where == 3) {
-                viewPager3.setCurrentItem(viewPager3.getCurrentItem() + 1);
-            }
-        }
-    };
-    private Runnable sliderRunnable4 = new Runnable(){
-        @Override
-        public void run() {
-
-            if(where == 4) {
-                viewPager4.setCurrentItem(viewPager4.getCurrentItem() + 1);
-            }
-        }
-
-    };
-
-
-
-
-
-    public void AllInfoo() {
-        Log.d("2", "fuck");
-        final Call<FirstPrReq> loginDataCall = ApiClient.getUserService().allInfo();
-
-
+    private void info(){
+        Call<FirstPrReq> loginDataCall = ApiClient.getUserService().allInfo();
         loginDataCall.enqueue(new Callback<FirstPrReq>() {
             @Override
             public void onResponse(Call<FirstPrReq> call, Response<FirstPrReq> response) {
                 if (response.isSuccessful()) {
                     loginResponse = response.body();
+
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             int last = 0;
-                            for(int j = 0; j < 5; j++){
-                                int[] pop = new int[5];
-                                for(int i = last; i < loginResponse.getBooks().size(); i++) {
 
-                                    if (i < 4) {
-                                        last = i + 1;
+                            for (int j = 0; j < 12; j++) {
+                                if (j == 11) {
+                                    break;
+                                }
+                                for (int i = last; i < loginResponse.getBooks().size(); i++) {
+                                    if (Integer.parseInt(loginResponse.getBooks().get(i).getViews()) >= 10) {
+                                        if (j < 11) {
+                                            last = i + 1;
 
-                                        String urll = loginResponse.getBooks().get(i).getImg();
-                                        urll.trim().replaceAll(" ", "%20");
-                                        URL url = null;
-                                        try {
-                                            url = new URL("http://irek.studio/books/books_img/"+urll);
-                                        } catch (MalformedURLException e) {
-                                            e.printStackTrace();
+                                            String urll = loginResponse.getBooks().get(i).getImg();
+                                            urll.trim().replaceAll(" ", "%20");
+                                            String name, autor, about, genre, lang, img, views;
+                                            name = loginResponse.getBooks().get(i).getName();
+                                            autor = loginResponse.getBooks().get(i).getAuthor();
+                                            about = loginResponse.getBooks().get(i).getBriefly();
+                                            genre = loginResponse.getBooks().get(i).getGenre();
+                                            lang = loginResponse.getBooks().get(i).getLanguage();
+                                            views = loginResponse.getBooks().get(i).getViews();
+
+                                                /*try {
+                                                    Glide.with(getContext()).load("http://irek.studio/books/books_img/" + urll).into(imageView);
+                                                } catch (Exception e) {
+
+                                                }*/
+                                            Log.d("1",loginResponse.getBooks().get(i).getName() );
+                                            models.add(0, new BookNotForJson(name, autor,about,genre,lang,urll,views));
+
+
+                                            j++;
+                                        } else {
+                                            String urll = loginResponse.getBooks().get(i).getImg();
+                                            urll.trim().replaceAll(" ", "%20");
+                                            String name, autor, about, genre, lang, img, views;
+                                            name = loginResponse.getBooks().get(i).getName();
+                                            autor = loginResponse.getBooks().get(i).getAuthor();
+                                            about = loginResponse.getBooks().get(i).getBriefly();
+                                            genre = loginResponse.getBooks().get(i).getGenre();
+                                            lang = loginResponse.getBooks().get(i).getLanguage();
+                                            views = loginResponse.getBooks().get(i).getViews();
+                                            models.add(0, new BookNotForJson(name, autor,about,genre,lang,urll,views));
+
+                                            break;
                                         }
-//                                        Image image = ImageIO.read(url);
-                                        items1[j].setAutor(loginResponse.getBooks().get(i).getAuthor());
-                                        items1[j].setName(loginResponse.getBooks().get(i).getName());
-                                        //ImageView imageView = viewPager1.findViewById(R.id.)
-                                        Log.d("1", "gg");
-                                        j++;
-                                        //Glide.with(getContext()). load ("http://irek.studio/books/books_img/"+urll).into(image);
-                                    } else {
-
-                                        last = i + 1;
-
-                                        String urll = loginResponse.getBooks().get(i).getImg();
-                                        urll.trim().replaceAll(" ", "%20");
-                                        items1[j].setAutor(loginResponse.getBooks().get(i).getAuthor());
-                                        items1[j].setName(loginResponse.getBooks().get(i).getName());
-                                        break;
                                     }
                                 }
                             }
                         }
-                    },1000);
+                    }, 1000);
+                    new CountDownTimer(1100, 500) {
+
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        public void onFinish() {
+                            Log.d("1",String.valueOf(models.get(5).author));
+                            Adapter_for_Home adapter = new Adapter_for_Home(models, getContext());
+                            popular.setAdapter(adapter);
+                        }
+                    }.start();
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<FirstPrReq> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+    private int j = 0;
+
+    public void AllInfooo(){
+        final Call<FirstPrReq> loginDataCall = ApiClient.getUserService().allInfo();
+        infl = getLayoutInflater();
+
+        loginDataCall.enqueue(new Callback<FirstPrReq>() {//////////////////////////popular Response!!!!!!!!
+            @Override
+            public void onResponse(Call<FirstPrReq> call, Response<FirstPrReq> response) {
+                if (response.isSuccessful()) {
+                    loginResponse = response.body();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            int last = 0;
+
+                            for (int j = 0; j < 12; j++) {
+                                if (j == 11) {
+                                    break;
+                                }
+                                for (int i = last; i < loginResponse.getBooks().size(); i++) {
+                                    if (Integer.parseInt(loginResponse.getBooks().get(i).getViews()) >= 10) {
+                                        if (j < 11) {
+                                            last = i + 1;
+                                            View view = infl.inflate(R.layout.custom_kitap_in_home, null, false);
+                                            view.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    bigClick(v);
+                                                }
+                                            });
+
+                                            TextView name = view.findViewById(R.id.name);
+                                            name.setText(loginResponse.getBooks().get(i).getName());
+                                            TextView autor = view.findViewById(R.id.autor);
+                                            autor.setText(loginResponse.getBooks().get(i).getAuthor());
+
+                                            ImageView imageView = view.findViewById(R.id.KitapImage);
+
+                                            String urll = loginResponse.getBooks().get(i).getImg();
+                                            urll.trim().replaceAll(" ", "%20");
+
+                                            try {
+                                                Glide.with(getContext()).load("http://irek.studio/books/books_img/" + urll).into(imageView);
+                                            } catch (Exception e) {
+
+                                            }
+
+
+                                           // popular.addView(view);
+
+                                            j++;
+                                        } else {
+
+                                            last = i + 1;
+
+                                            View view = infl.inflate(R.layout.customkitapforcarusel, null, false);
+                                            view.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    bigClick(v);
+                                                }
+                                            });
+
+                                            TextView name = view.findViewById(R.id.name);
+                                            name.setText(loginResponse.getBooks().get(i).getName());
+                                            TextView autor = view.findViewById(R.id.autor);
+                                            autor.setText(loginResponse.getBooks().get(i).getAuthor());
+                                            ImageView imageView = view.findViewById(R.id.KitapImage);
+
+                                            String urll = loginResponse.getBooks().get(i).getImg();
+                                            urll.trim().replaceAll(" ", "%20");
+                                            try {
+                                                Glide.with(getContext()).load("http://irek.studio/books/books_img/" + urll).into(imageView);
+                                            } catch (Exception e) {
+
+                                            }
+                                            //popular.addView(view);
+
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }, 1000);
 
 
                 } else {
@@ -362,8 +309,8 @@ public class HomeFragment extends Fragment {
                 Log.e("Error", t.getLocalizedMessage());
             }
         });
-
     }
+
 
     public void bigClick(View view){
 
@@ -375,21 +322,19 @@ public class HomeFragment extends Fragment {
                 int last = 0;
                 for(int i = 0; i < loginResponse.getBooks().size(); i++){
                     if(loginResponse.getBooks().get(i).getName().equals(name.getText().toString())){
-                        if(loginResponse.getBooks().get(i).getLanguage().equals("Татарский")) {
-                            try {
-                                url = new URL("http://irek.studio/books/books_text/books_txt/" + loginResponse.getBooks().get(i).getName().trim().replaceAll(" ","%20") + "_tat.txt");
-                               // new AsyncRequest().execute("123", "/ajax", "foo=bar");
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            }
+
+                        try {
+                            url = new URL("http://irek.studio/books/books_text/books_txt/" + loginResponse.getBooks().get(i).getName().trim().replaceAll(" ","%20")+"_tat.txt");
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
                         }
+                        new AsyncRequest().execute("123", "/ajax", "foo=b'ar");
 
                         Timer timer = new Timer();
                         final int finalI = i;
                         timer.schedule(new TimerTask() {
                             @Override
                             public void run() {
-
                                 Intent intent = new Intent(getContext(), KnigaAbout.class);
                                 intent.putExtra("name",name.getText().toString());
                                 intent.putExtra("autor",autor.getText().toString());
@@ -401,38 +346,68 @@ public class HomeFragment extends Fragment {
                                 intent.putExtra("who", loginResponse.getBooks().get(finalI).getUserAuthor());
                                 intent.putExtra("how_many", loginResponse.getBooks().get(finalI).getViews());
                                 intent.putExtra("img", loginResponse.getBooks().get(finalI).getImg());
-                                intent.putExtra("text", "");
+                                intent.putExtra("url", url.toString());
+                                intent.putExtra("text", fullstring);
                                 Log.d("1",loginResponse.getBooks().get(finalI).getLanguage()+" " +loginResponse.getBooks().get(finalI).getLanguageOriginal()
                                         + " " + loginResponse.getBooks().get(finalI).getTags()+ " " + loginResponse.getBooks().get(finalI).getSizeOfBookPages()
                                         + " "+loginResponse.getBooks().get(finalI).getUserAuthor()+ " " + loginResponse.getBooks().get(finalI).getViews());
                                 startActivity(intent);
                             }
-                        },1000);
-                        /*else {
-                            url = new URL("http://irek.studio/books/books_text/books_txt/" + loginResponse.getBooks().get(i).getName().trim().replaceAll(" ","%20")+".txt");
-                        }*/
+                        },200);
                     }
                 }
             }
-        }, 1000);
+        }, 800);
     }
 
+    private class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
+        public MyFragmentPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
+        @Override
+        public Fragment getItem(int position) {
+            return PageFragmentforHome.newInstance(position);
+        }
 
+        @Override
+        public int getCount() {
+            return 6;
+        }
 
-
-
-
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        sliderHandler4.postDelayed(sliderRunnable4, 2000);
-        sliderHandler3.postDelayed(sliderRunnable3, 2000);
-        sliderHandler2.postDelayed(sliderRunnable2, 2000);
-        sliderHandler1.postDelayed(sliderRunnable1, 2000);
     }
+
+    public class AsyncRequest extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                String string;
+
+
+                LineNumberReader reader = new LineNumberReader(new InputStreamReader(url.openStream()));
+                string = reader.readLine();
+                fullstring = string;
+                int  i = 1;
+                while (string != null) {
+                    i++;
+                    //System.out.println(string);
+                    string = reader.readLine();
+                    fullstring = fullstring + string;
+                    Log.d(String.valueOf(i), fullstring);
+                }
+                // Log.d("1",fullstring);
+                reader.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
 
 }

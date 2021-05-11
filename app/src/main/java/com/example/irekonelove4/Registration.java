@@ -48,6 +48,7 @@ public class Registration extends Activity {
     public static final String APP_PREFERENCES_MAIL = "Mail";
     public static final String APP_PREFERENCES_PASSWORD = "Pass";
     public static final String APP_PREFERENCES_SEX = "00";
+    public static final String APP_PREFERENCES_ID = "ID";
     public static final String APP_PREFERENCES_AVATAR = "AVATAR";
     public static final String APP_PREFERENCES_QUOTE = "Quote";
     public static final String APP_PREFERENCES_FAVOURITE = "Fav";
